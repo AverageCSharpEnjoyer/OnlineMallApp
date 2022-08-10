@@ -7,15 +7,15 @@ using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
 using OnlineMall.Areas.Identity.Data;
 using OnlineMall.Models;
-using OnlineMall.Data;
+using Microsoft.AspNetCore.Authorization;
 
 namespace OnlineMall.Controllers
 {
     public class InvoicesController : Controller
     {
-        private readonly BusinessDbContext _context;
+        private readonly ApplicationDbContext _context;
 
-        public InvoicesController(BusinessDbContext context)
+        public InvoicesController(ApplicationDbContext context)
         {
             _context = context;
         }
@@ -25,7 +25,7 @@ namespace OnlineMall.Controllers
         {
               return _context.Invoice != null ? 
                           View(await _context.Invoice.ToListAsync()) :
-                          Problem("Entity set 'BusinessDbContext.Invoice'  is null.");
+                          Problem("Entity set 'ApplicationDbContext.Invoice'  is null.");
         }
 
         // GET: Invoices/Details/5
@@ -57,7 +57,7 @@ namespace OnlineMall.Controllers
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create([Bind("InvoiceId,InvoiceAmount,InvoiceDateOfIssue,InvoiceOwner")] Invoice invoice)
+        public async Task<IActionResult> Create([Bind("InvoiceId,InvoiceAmount,DateOfIssue,Contractor,CreatorId,Status")] Invoice invoice)
         {
             if (ModelState.IsValid)
             {
@@ -89,7 +89,7 @@ namespace OnlineMall.Controllers
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Edit(int id, [Bind("InvoiceId,InvoiceAmount,InvoiceDateOfIssue,InvoiceOwner")] Invoice invoice)
+        public async Task<IActionResult> Edit(int id, [Bind("InvoiceId,InvoiceAmount,DateOfIssue,Contractor,CreatorId,Status")] Invoice invoice)
         {
             if (id != invoice.InvoiceId)
             {
@@ -144,7 +144,7 @@ namespace OnlineMall.Controllers
         {
             if (_context.Invoice == null)
             {
-                return Problem("Entity set 'BusinessDbContext.Invoice'  is null.");
+                return Problem("Entity set 'ApplicationDbContext.Invoice'  is null.");
             }
             var invoice = await _context.Invoice.FindAsync(id);
             if (invoice != null)

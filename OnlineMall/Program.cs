@@ -2,8 +2,7 @@ using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
 using OnlineMall.Areas.Identity.Data;
 using Microsoft.Extensions.DependencyInjection;
-using OnlineMall.Data;
-
+using Microsoft.AspNetCore.Authorization;
 
 var builder = WebApplication.CreateBuilder(args);
 var connectionString = builder.Configuration.GetConnectionString("ApplicationDbContextConnection") ?? throw new InvalidOperationException("Connection string 'ApplicationDbContextConnection' not found.");
@@ -11,11 +10,8 @@ var connectionString = builder.Configuration.GetConnectionString("ApplicationDbC
 builder.Services.AddDbContext<ApplicationDbContext>(options =>
     options.UseSqlServer(connectionString));
 
-var businessConnectionString = builder.Configuration.GetConnectionString("BusinessDbContext") ?? throw new InvalidOperationException("Connection string 'BusinessDbContext' not found.");
-builder.Services.AddDbContext<BusinessDbContext>(options =>
-    options.UseSqlServer(businessConnectionString));
-
 builder.Services.AddDefaultIdentity<ApplicationUser>(options => options.SignIn.RequireConfirmedAccount = false)
+    .AddRoles<IdentityRole>()
     .AddEntityFrameworkStores<ApplicationDbContext>();
 
 // Add services to the container.
@@ -35,6 +31,13 @@ builder.Services.Configure<IdentityOptions>(options =>
 
     options.User.RequireUniqueEmail = true;
 });
+
+//builder.Services.AddAuthorization(options =>
+//{
+//	options.FallbackPolicy = new AuthorizationPolicyBuilder()
+//		.RequireAuthenticatedUser()
+//		.Build();
+//});
 
 var app = builder.Build();
 

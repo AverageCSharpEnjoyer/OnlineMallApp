@@ -7,10 +7,9 @@ namespace OnlineMall.Models
 		public int InvoiceId { get; set; }
 		public double InvoiceAmount { get; set; }
 
-		[DataType(DataType.Date)]
-		public string DateOfIssue { get; set; }
+		public string? DateOfIssue { get; set; }
 		public string? Contractor { get; set; }
-		public string CreatorId { get; set; } //user id from Ms Identity
+		public string? CreatorId { get; set; } //user id from Ms Identity
 		public InvoiceStatus Status { get; set; }
 	}
 
