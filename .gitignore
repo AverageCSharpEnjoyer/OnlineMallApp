@@ -3,6 +3,7 @@ OnlineMall/bin/
 OnlineMall/obj/
 OnlineMall/appsettings.json
 OnlineMall/Properties/
+OnlineMall/wwwroot/
 # Created by https://www.toptal.com/developers/gitignore/api/aspnetcore,windows
 # Edit at https://www.toptal.com/developers/gitignore?templates=aspnetcore,windows
 
