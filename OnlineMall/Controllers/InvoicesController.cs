@@ -20,7 +20,8 @@ namespace OnlineMall.Controllers
             _context = context;
         }
 
-        // GET: Invoices
+		// GET: Invoices
+		[Authorize]
         public async Task<IActionResult> Index()
         {
               return _context.Invoice != null ? 
