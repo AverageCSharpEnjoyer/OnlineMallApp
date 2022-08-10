@@ -26,7 +26,7 @@
                 @Html.DisplayNameFor(model => model.Status)
             </th>
             <th>
-                @Html.DisplayNameFor(model => model.CreatorId)
+                @Html.DisplayNameFor(model => model.OwnerID)
             </th>
             <th></th>
         </tr>
@@ -48,7 +48,7 @@
                     @Html.DisplayFor(modelItem => item.Status)
                 </td>
                 <td>
-                    @Html.DisplayFor(modelItem => item.CreatorId)
+                    @Html.DisplayFor(modelItem => item.OwnerID)
                 </td>
                 <td>
                     <a asp-action="Edit" asp-route-id="@item.InvoiceId">Edit</a> |

@@ -57,7 +57,7 @@ namespace OnlineMall.Controllers
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create([Bind("InvoiceId,InvoiceAmount,DateOfIssue,Contractor,CreatorId,Status")] Invoice invoice)
+        public async Task<IActionResult> Create([Bind("InvoiceId,InvoiceAmount,DateOfIssue,Contractor,OwnerID,Status")] Invoice invoice)
         {
             if (ModelState.IsValid)
             {
@@ -89,7 +89,7 @@ namespace OnlineMall.Controllers
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Edit(int id, [Bind("InvoiceId,InvoiceAmount,DateOfIssue,Contractor,CreatorId,Status")] Invoice invoice)
+        public async Task<IActionResult> Edit(int id, [Bind("InvoiceId,InvoiceAmount,DateOfIssue,Contractor,OwnerID,Status")] Invoice invoice)
         {
             if (id != invoice.InvoiceId)
             {

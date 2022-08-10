@@ -14,6 +14,14 @@ builder.Services.AddDefaultIdentity<ApplicationUser>(options => options.SignIn.R
     .AddRoles<IdentityRole>()
     .AddEntityFrameworkStores<ApplicationDbContext>();
 
+builder.Services.AddAuthorization(options =>
+{
+    options.FallbackPolicy = new AuthorizationPolicyBuilder()
+        .RequireAuthenticatedUser()
+        .Build();
+});
+
+
 // Add services to the container.
 builder.Services.AddControllersWithViews();
 
@@ -31,13 +39,6 @@ builder.Services.Configure<IdentityOptions>(options =>
 
     options.User.RequireUniqueEmail = true;
 });
-
-//builder.Services.AddAuthorization(options =>
-//{
-//	options.FallbackPolicy = new AuthorizationPolicyBuilder()
-//		.RequireAuthenticatedUser()
-//		.Build();
-//});
 
 var app = builder.Build();
 

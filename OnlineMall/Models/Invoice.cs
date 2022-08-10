@@ -9,7 +9,7 @@ namespace OnlineMall.Models
 
 		public string? DateOfIssue { get; set; }
 		public string? Contractor { get; set; }
-		public string? CreatorId { get; set; } //user id from Ms Identity
+		public string? OwnerID { get; set; } //user id from Ms Identity
 		public InvoiceStatus Status { get; set; }
 	}
 
