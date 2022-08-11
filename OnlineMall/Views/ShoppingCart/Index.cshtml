@@ -1,0 +1,57 @@
+﻿@model OnlineMall.Models.ShoppingCart
+@{
+    ViewData["Title"] = "Shopping Cart";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                <p>Product name</p>
+            </th>
+            <th>
+                <p>Full name</p>
+            </th>
+            <th>
+                <p>Color</p>
+            </th>
+            <th>
+                <p>Size</p>
+            </th>
+            <th>
+                <p>Price</p>
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+        @if (Model.ListOfItems is not null)
+        {
+            @foreach (var item in Model.ListOfItems)
+            {
+                <tr>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.ShortName)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.FullName)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Color)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Size)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Price)
+                    </td>
+                    <td>
+                        <a asp-action="Details" asp-route-id="@item.Id">Details</a> |
+                        <a asp-action="Delete" asp-route-id="@item.Id">Delete</a>
+                    </td>
+                </tr>
+            }
+        }
+    </tbody>
+</table>

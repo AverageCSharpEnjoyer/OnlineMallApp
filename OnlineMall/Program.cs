@@ -18,6 +18,7 @@ builder.Services.AddDefaultIdentity<ApplicationUser>(options => options.SignIn.R
 
 builder.Services.AddRazorPages();
 builder.Services.AddControllersWithViews();
+builder.Services.AddSession();
 
 //builder.Services.AddAuthentication(CookieAuthenticationDefaults.AuthenticationScheme)
 //    .AddCookie();
@@ -49,6 +50,7 @@ app.UseRouting();
 
 app.UseAuthentication();;
 app.UseAuthorization();
+app.UseSession();
 
 app.MapRazorPages();
 app.MapDefaultControllerRoute();

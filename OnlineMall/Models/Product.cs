@@ -1,6 +1,6 @@
 ﻿namespace OnlineMall.Models
 {
-	public class ShoppingItem
+	public class Product
 	{
 		public int Id { get; set; }
 		public string? ShortName { get; set; }

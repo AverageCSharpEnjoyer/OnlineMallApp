@@ -4,20 +4,20 @@ using OnlineMall.Areas.Identity.Data;
 
 namespace OnlineMall.Controllers
 {
-	public class ShoppingItemController : Controller
+	public class ProductController : Controller
 	{
 		private readonly ApplicationDbContext _context;
 
-        public ShoppingItemController(ApplicationDbContext context)
+        public ProductController(ApplicationDbContext context)
         {
             _context = context;
         }
 
         public async Task<IActionResult> Index()
 		{
-			return _context.ShoppingItems != null ?
-				View(await _context.ShoppingItems.ToListAsync()) :
-				Problem("Entity set 'ShoppingItems' is null.");
+			return _context.Products != null ?
+				View(await _context.Products.ToListAsync()) :
+				Problem("Entity set 'Products' is null.");
 		}
 	}
 }

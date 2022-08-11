@@ -1,0 +1,27 @@
+﻿@model IEnumerable<OnlineMall.Models.Product>
+@{
+    ViewData["Title"] = "All items";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h1>All items</h1>
+
+<div class="container">
+    <div class="row">
+        @foreach (var item in Model)
+        {
+            <div class="col-lg">
+                <div class="card mb-3">
+                    <div class="card-body" style="min-width: 18rem;">
+                        <img src="@item.ImgPath" class="card-img-top" alt="Green jacket" />
+                        <h5 class="card-title">@Html.DisplayFor(modelItem => item.ShortName)</h5>
+                        <p class="card-text">@Html.DisplayFor(modelItem => item.FullName)</p>
+                        <p class="card-text">@Html.DisplayFor(modelItem => item.Price)</p>
+                        <a href="#" class="btn btn-primary">Add to basket</a>
+                    </div>
+                </div>
+            </div>
+        }
+    </div>
+</div>
+

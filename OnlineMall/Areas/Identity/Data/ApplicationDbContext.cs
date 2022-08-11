@@ -13,7 +13,7 @@ public class ApplicationDbContext : IdentityDbContext<ApplicationUser>
     }
 
     public DbSet<Invoice> Invoice { get; set; }
-    public DbSet<ShoppingItem> ShoppingItems { get; set; }
+    public DbSet<Product> Products { get; set; }
     protected override void OnModelCreating(ModelBuilder builder)
     {
         base.OnModelCreating(builder);
