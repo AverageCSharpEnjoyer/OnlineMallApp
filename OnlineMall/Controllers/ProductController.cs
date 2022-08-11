@@ -9,12 +9,12 @@ namespace OnlineMall.Controllers
 	{
 		private readonly ApplicationDbContext _context;
 
-        public ProductController(ApplicationDbContext context)
-        {
-            _context = context;
-        }
+		public ProductController(ApplicationDbContext context)
+		{
+			_context = context;
+		}
 
-        public async Task<IActionResult> Index()
+		public async Task<IActionResult> Index()
 		{
 			return _context.Products != null ?
 				View(await _context.Products.ToListAsync()) :
@@ -39,6 +39,42 @@ namespace OnlineMall.Controllers
 			}
 			return View(product);
 		}
+
+		public async Task<IActionResult> DeleteAsync(int? id)
+		{
+			if (id == null || _context.Products == null)
+			{
+				return NotFound();
+			}
+
+			var product = await _context.Products.FirstOrDefaultAsync(m => m.Id == id);
+			if (product == null)
+			{
+				return NotFound();
+			}
+
+			return View(product);
+		}
+
+		[HttpPost, ActionName("Delete")]
+		[ValidateAntiForgeryToken]
+		public async Task<IActionResult> DeleteConfirmed(int id)
+		{
+			if (_context.Products == null)
+			{
+				return Problem("Entity set 'ApplicationDbContext.Products'  is null.");
+			}
+			var product = await _context.Products.FindAsync(id);
+			if (product != null)
+			{
+				_context.Products.Remove(product);
+			}
+
+			await _context.SaveChangesAsync();
+			return RedirectToAction(nameof(Index));
+		}
+
+
 
 	}
 }
