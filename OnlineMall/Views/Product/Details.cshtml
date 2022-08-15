@@ -1,15 +1,12 @@
 ﻿@model OnlineMall.Models.Product
 
 @{
-    ViewData["Title"] = "Product details";
+    ViewData["Title"] = @Model.ShortName;
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
-<h1>Details</h1>
 
 <div>
-    <h4>Product</h4>
-    <hr />
     <div class="container">
         <div class="row">
             <div class="col-md">
@@ -18,9 +15,13 @@
             <div class="col-md">
                 <h5>@Model.ShortName</h5>
                 <p>@Model.FullName</p>
+
+                <p>@Model.Price</p>
+
+
                 <p>@Model.Color</p>
                 <p>@Model.Size</p>
-                <p>@Model.Price</p>
+                
                 <p>@Model.Description</p>
             </div>
         </div>
