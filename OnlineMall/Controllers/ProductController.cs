@@ -21,6 +21,24 @@ namespace OnlineMall.Controllers
 				Problem("Entity set 'Products' is null.");
 		}
 
+		// GET: Products/Details/5
+		public async Task<IActionResult> Details(int? id)
+		{
+			if (id == null || _context.Invoice == null)
+			{
+				return NotFound();
+			}
+
+			var invoice = await _context.Products
+				.FirstOrDefaultAsync(m => m.Id == id);
+			if (invoice == null)
+			{
+				return NotFound();
+			}
+
+			return View(invoice);
+		}
+
 		public IActionResult Create()
 		{
 			return View();
@@ -130,6 +148,7 @@ namespace OnlineMall.Controllers
 		{
 			return (_context.Products?.Any(e => e.Id == id)).GetValueOrDefault();
 		}
+
 
 	}
 }

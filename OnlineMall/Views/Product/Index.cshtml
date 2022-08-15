@@ -20,7 +20,7 @@
                             <h5 class="card-title">@Html.DisplayFor(modelItem => item.ShortName)</h5>
                             <p class="card-text">@Html.DisplayFor(modelItem => item.FullName)</p>
                             <p class="card-text">@Html.DisplayFor(modelItem => item.Price)</p>
-                            <a href="#" class="btn btn-primary">Add to basket</a>
+                            <a asp-controller="ShoppingCart" asp-action="Buy" asp-route-id="@item.Id" class="btn btn-outline-info">Add to basket</a>
                         </div>
                         <a asp-action="Edit" asp-route-id="@item.Id" class="btn btn-outline-info">Edit</a>
                         <a asp-action="Details" asp-route-id="@item.Id" class="btn btn-outline-info">Details</a>

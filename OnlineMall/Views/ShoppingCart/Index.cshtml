@@ -26,31 +26,32 @@
         </tr>
     </thead>
     <tbody>
-        @if (Model.ListOfItems is not null)
+        @if (Model is not null)
         {
             @foreach (var item in Model.ListOfItems)
             {
                 <tr>
                     <td>
-                        @Html.DisplayFor(modelItem => item.ShortName)
+                        @Html.DisplayFor(modelItem => item.Product.ShortName)
                     </td>
                     <td>
-                        @Html.DisplayFor(modelItem => item.FullName)
+                        @Html.DisplayFor(modelItem => item.Product.FullName)
                     </td>
                     <td>
-                        @Html.DisplayFor(modelItem => item.Color)
+                        @Html.DisplayFor(modelItem => item.Product.Color)
                     </td>
                     <td>
-                        @Html.DisplayFor(modelItem => item.Size)
+                        @Html.DisplayFor(modelItem => item.Product.Size)
                     </td>
                     <td>
-                        @Html.DisplayFor(modelItem => item.Price)
+                        @Html.DisplayFor(modelItem => item.Product.Price)
                     </td>
                     <td>
-                        <a asp-action="Details" asp-route-id="@item.Id">Details</a> |
-                        <a asp-action="Delete" asp-route-id="@item.Id">Delete</a>
+                        <a asp-action="Details" asp-route-id="@item.Product.Id">Details</a> |
+                        <a asp-action="Delete" asp-route-id="@item.Product.Id">Delete</a>
                     </td>
                 </tr>
+
             }
         }
     </tbody>
