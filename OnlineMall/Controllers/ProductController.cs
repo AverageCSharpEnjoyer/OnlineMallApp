@@ -1,6 +1,8 @@
 ﻿using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.Mvc.ModelBinding.Binders;
 using Microsoft.EntityFrameworkCore;
 using OnlineMall.Areas.Identity.Data;
+using OnlineMall.Helpers;
 using OnlineMall.Models;
 
 namespace OnlineMall.Controllers
@@ -113,7 +115,7 @@ namespace OnlineMall.Controllers
 		// For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
 		[HttpPost]
 		[ValidateAntiForgeryToken]
-		public async Task<IActionResult> Edit(int id, [Bind("Id,ShortName,FullName,Price,Size,Color,Description,ImgPath")] Product product)
+		public async Task<IActionResult> Edit(int id, [ModelBinder(typeof(ProductModelBinder))] Product product)
 		{
 			if (id != product.Id)
 			{

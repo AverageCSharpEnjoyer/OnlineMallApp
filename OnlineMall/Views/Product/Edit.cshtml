@@ -6,8 +6,6 @@
 }
 
 <h1>Edit</h1>
-
-<h4>Procust</h4>
 <hr />
 <div class="row">
     <div class="col-md-4">
@@ -36,7 +34,9 @@
             </div>
             <div class="form-group">
                 <label asp-for="Size" class="control-label"></label>
-                <input asp-for="Size" class="form-control" />
+                <select asp-for="Size" asp-items="Html.GetEnumSelectList<ProductSize>()">
+                    <option selected="selected" value=""></option>
+                </select>
                 <span asp-validation-for="Size" class="text-danger"></span>
             </div>
             <div class="form-group">

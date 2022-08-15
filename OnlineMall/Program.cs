@@ -1,9 +1,10 @@
-using Microsoft.AspNetCore.Authentication.Cookies;
-using Microsoft.AspNetCore.Authentication.OpenIdConnect;
-using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Http.Features;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
 using OnlineMall.Areas.Identity.Data;
+using OnlineMall.Helpers;
+using OnlineMall.Models;
+using System.Web.Mvc;
 
 var builder = WebApplication.CreateBuilder(args);
 var connectionString = builder.Configuration.GetConnectionString("ApplicationDbContextConnection") ?? throw new InvalidOperationException("Connection string 'ApplicationDbContextConnection' not found.");
@@ -37,6 +38,16 @@ builder.Services.Configure<IdentityOptions>(options =>
     options.Password.RequireNonAlphanumeric = false;
     options.Password.RequireDigit = false;
     options.Password.RequiredUniqueChars = 0;
+});
+
+builder.Services.AddControllers(options =>
+{
+    options.ModelBinderProviders.Insert(0, new ProductModelBinderProvider());
+});
+
+builder.Services.Configure<FormOptions>(options =>
+{
+    options.ValueCountLimit = int.MaxValue;
 });
 
 var app = builder.Build();
